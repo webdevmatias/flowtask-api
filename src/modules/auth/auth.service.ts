@@ -25,7 +25,16 @@ export class AuthService {
     });
   }
 
-  // Verificar senha
+  // Verificar
+  private async verifyPassword(
+    hash: string,
+    password: string,
+  ): Promise<boolean> {
+    const pepper = this.getPepper();
+    const pepperedPassword = password + pepper;
+    return argon2.verify(hash, pepperedPassword);
+  }
+
   // Registro
   // Gerar token JWT
   // login
