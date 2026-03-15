@@ -1,10 +1,14 @@
 import { Injectable } from '@nestjs/common';
-// import { RegisterDto } from './dto/register.dto';
-// import { LoginDto } from './dto/login.dto';
-// import { AuthResponseDto } from './dto/auth-response.dto';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AuthService {
+  constructor(private configService: ConfigService) {}
+
+  private getPepper(): string {
+    return this.configService.getOrThrow<string>('PASSWORD_PEPPER');
+  }
+
   getHello(): string {
     return 'auth service';
   }
