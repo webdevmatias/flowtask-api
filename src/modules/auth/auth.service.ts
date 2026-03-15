@@ -25,7 +25,7 @@ export class AuthService {
     });
   }
 
-  // Verificar
+  // Verificar Senha
   private async verifyPassword(
     hash: string,
     password: string,
